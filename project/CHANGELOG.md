@@ -5,6 +5,50 @@ All notable changes to the CRWLR project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2025-03-26
+
+### Added
+- Activity feed with real-time updates
+  - Multiple activity types support
+  - Like functionality
+  - Activity metadata
+- Bottom navigation bar
+  - Mobile-friendly design
+  - Quick actions
+  - Active state indicators
+- Home page implementation
+  - Activity feed integration
+  - Quick action buttons
+  - Real-time updates
+
+### Changed
+- Moved navigation to bottom of screen
+- Enhanced mobile experience
+- Improved real-time functionality
+
+### Dependencies Added
+- date-fns ^3.3.1
+
+## [1.2.0] - 2025-03-25
+
+### Added
+- Friend system implementation
+  - Friend requests management
+  - User search functionality
+  - Add/remove friends
+  - Friend activity tracking
+- Enhanced profile management
+  - Profile editing capabilities
+  - Avatar support
+  - Friend section integration
+  - Activity feed
+
+### Changed
+- Updated ProfileFriendsSection with tabbed interface
+- Enhanced user search with real-time feedback
+- Improved friend request handling
+- Updated progress tracking and documentation
+
 ## [1.1.0] - 2025-03-20
 
 ### Added

@@ -3,7 +3,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
-import { LogIn } from 'lucide-react';
+import { CircleUserRound } from 'lucide-react';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -37,11 +37,27 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
-          <LogIn className="mx-auto h-12 w-12 text-indigo-600" />
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">
+          <div className="relative mx-auto w-32 h-32 mb-4">
+            {/* Spider symbol background with gradient and animation */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-red-600 to-indigo-600 rounded-full opacity-20 animate-pulse"></div>
+            
+            {/* Spider symbol with web-like pattern */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-indigo-600 rounded-full opacity-10"></div>
+              <div className="absolute inset-2 bg-gradient-to-tr from-red-600 to-indigo-600 rounded-full"></div>
+              <CircleUserRound 
+                className="w-24 h-24 text-white transform rotate-45" 
+                strokeWidth={1.5}
+              />
+            </div>
+          </div>
+          <h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-indigo-600 tracking-tight">
+            CRWLR
+          </h1>
+          <h2 className="mt-4 text-3xl font-bold text-gray-900">
             Welcome back
           </h2>
           <p className="mt-2 text-sm text-gray-600">
@@ -55,7 +71,7 @@ const LoginPage = () => {
           </p>
         </div>
 
-        <div className="mt-8 bg-white py-8 px-4 shadow-md sm:rounded-lg sm:px-10">
+        <div className="mt-8 bg-white py-8 px-4 shadow-lg sm:rounded-xl sm:px-10 border border-gray-100">
           {error && (
             <div className="mb-4 bg-rose-50 border border-rose-200 text-rose-700 px-4 py-3 rounded-lg">
               {error}
