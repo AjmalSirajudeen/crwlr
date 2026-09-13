@@ -1,7 +1,5 @@
 # CRWLR
 
-**Status: work in progress.** Personal prototype for location / social discovery. Not a launched product.
-
 CRWLR is an app sketch for exploring venues and organizing crawls with friends. The current build has a real auth and friends path on Supabase, plus several screens that still run on mock venue data.
 
 ## What this project demonstrates
