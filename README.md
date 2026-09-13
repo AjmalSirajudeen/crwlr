@@ -1,68 +1,51 @@
 # CRWLR
 
-**Status: work in progress.** Personal prototype for location / social discovery. Not a launched product.
+A little obsession of mine: what if going out felt more like a shared hunt than a group chat full of "idk where do you want to go?"
 
-CRWLR is an app sketch for exploring venues and organizing crawls with friends. The current build has a real auth and friends path on Supabase, plus several screens that still run on mock venue data.
+CRWLR is a location / social discovery app I'm building for people who like to wander. Find a spot. Pull friends in. String a few places into a crawl. Leave a trail so the next night is easier than the last.
 
-## What this project demonstrates
+This is early. You can already sign in, add friends, and poke around the feed. A lot of the "what's near me" magic is still on the table. I'm sharing it because I want people to get the idea, try the bones of it, and tell me what would actually make them open it on a Friday.
 
-- A product idea taken far enough to click through: auth, profile, friends, activity feed, navigation
-- Frontend structure in React (Vite, TypeScript, Tailwind)
-- Supabase for auth and some social data
-- An honest split between wired features and placeholders (discover / map / gamification)
+## The bet
 
-## What works today
+Most nightlife apps are either maps or reviews. I care about the in-between: the route you invent with people you like, the check-in that is really a "you had to be there," and the quiet scoreboard that makes exploring a city feel like a game you are writing yourselves.
+
+I'm an operator and a builder by day. CRWLR is the side of me that wants to ship something people pass around.
+
+## What's already fun to click
 
 - Sign up / log in
-- Home activity feed (likes)
-- Friends (search, requests, list)
+- A home feed you can like
+- Friends: search, request, accept
 - Profile
-- Crawl and leaderboard **screens** (UI is there; a lot of the content is still mock)
+- Crawl and leaderboard screens (the look is there; the live city underneath is still coming)
 
-## What does not work yet
+## Still cooking
 
-- Real nearby venues (Discover uses `project/src/data/mockData.ts`)
-- Map
-- Live check-ins tied to a place API
-- Points / achievements
-- Tests and a production deploy
+- Real nearby venues (Discover is on mock data for now)
+- A map that does more than sit there
+- Check-ins tied to real places
+- Points, badges, a leaderboard that means something
+- The kind of polish you only get after strangers use it
 
-See [STATUS.md](STATUS.md) for the checklist.
+Checklist lives in [STATUS.md](STATUS.md) if you like watching the sausage get made.
 
 ## Stack
 
-React, TypeScript, Vite, Tailwind, React Router, Supabase.
+React, TypeScript, Vite, Tailwind, React Router, Supabase. Fast enough to prototype. Serious enough to grow.
 
-## Run it locally
+## Run it
 
-You need Node and a Supabase project.
+Node plus your own Supabase project.
 
 ```bash
 cd project
 cp .env.example .env
-# fill in VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY
+# drop in VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY
 npm install
 npm run dev
 ```
 
-SQL for the current schema is under `project/supabase/migrations/`. Apply those in your own Supabase project. Do not commit `.env`.
+Migrations are in `project/supabase/migrations/`. Keep `.env` off git.
 
-## Layout
-
-```
-crwlr/
-├── README.md
-├── STATUS.md
-└── project/
-    ├── src/pages/          # screens
-    ├── src/components/
-    ├── src/data/mockData.ts
-    ├── src/lib/supabase.ts
-    └── supabase/migrations/
-```
-
-The app lives in `project/` from the first prototype pass. I have not flattened that yet.
-
-## Notes
-
-This sits next to two finished analytics repos (NCAA rankings, Atlanta airport delays). Those are study reimplementations. This one is the product prototype, and it is still open.
+If you try it and it sparks something (a venue you'd want in here, a crawl that got messy, a feature you'd actually use), I want to hear it. That's the whole point of putting an unfinished product on the internet.
