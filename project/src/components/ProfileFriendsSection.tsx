@@ -89,12 +89,12 @@ const ProfileFriendsSection = ({
         <CardHeader className="border-b">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center">
-              <Users className="w-5 h-5 text-indigo-500 mr-2" />
+              <Users className="w-5 h-5 text-ember mr-2" />
               <h2 className="text-lg font-semibold">Friends</h2>
             </div>
             <Link 
               to="/friends" 
-              className="text-sm text-indigo-600 hover:text-indigo-700 flex items-center"
+              className="text-sm text-ember hover:text-ember-dark flex items-center"
             >
               View All
               <ArrowRight className="w-4 h-4 ml-1" />
@@ -106,7 +106,7 @@ const ProfileFriendsSection = ({
               className={`
                 py-2 px-4 border-b-2 font-medium text-sm
                 ${activeTab === 'overview'
-                  ? 'border-indigo-500 text-indigo-600'
+                  ? 'border-ember text-ember'
                   : 'border-transparent text-gray-500 hover:text-gray-700'}
               `}
               onClick={() => setActiveTab('overview')}
@@ -117,14 +117,14 @@ const ProfileFriendsSection = ({
               className={`
                 py-2 px-4 border-b-2 font-medium text-sm flex items-center
                 ${activeTab === 'requests'
-                  ? 'border-indigo-500 text-indigo-600'
+                  ? 'border-ember text-ember'
                   : 'border-transparent text-gray-500 hover:text-gray-700'}
               `}
               onClick={() => setActiveTab('requests')}
             >
               Requests
               {friendRequests.length > 0 && (
-                <span className="ml-2 bg-indigo-100 text-indigo-600 px-2 py-0.5 rounded-full text-xs">
+                <span className="ml-2 bg-ember-light text-ember px-2 py-0.5 rounded-full text-xs">
                   {friendRequests.length}
                 </span>
               )}
@@ -133,7 +133,7 @@ const ProfileFriendsSection = ({
               className={`
                 py-2 px-4 border-b-2 font-medium text-sm
                 ${activeTab === 'add'
-                  ? 'border-indigo-500 text-indigo-600'
+                  ? 'border-ember text-ember'
                   : 'border-transparent text-gray-500 hover:text-gray-700'}
               `}
               onClick={() => setActiveTab('add')}
@@ -160,7 +160,7 @@ const ProfileFriendsSection = ({
                     src={friend.avatar_url || undefined}
                     alt={friend.full_name || friend.username}
                     size="lg"
-                    className="ring-2 ring-white hover:ring-indigo-500 transition-all cursor-pointer"
+                    className="ring-2 ring-white hover:ring-ember transition-all cursor-pointer"
                   />
                 ))}
               </div>
@@ -220,7 +220,7 @@ const ProfileFriendsSection = ({
           {activeTab === 'requests' && (
             <div className="space-y-4">
               {friendRequests.length === 0 ? (
-                <div className="text-center py-8 bg-gray-50 rounded-lg">
+                <div className="text-center py-8 bg-paper rounded-lg">
                   <p className="text-gray-500">No pending friend requests</p>
                 </div>
               ) : (
@@ -294,7 +294,7 @@ const ProfileFriendsSection = ({
               <div className="space-y-2">
                 {searching ? (
                   <div className="text-center py-4">
-                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-indigo-600 mx-auto"></div>
+                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-ink mx-auto"></div>
                   </div>
                 ) : (
                   searchResults.map((user) => (

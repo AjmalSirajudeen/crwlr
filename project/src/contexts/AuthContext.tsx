@@ -3,9 +3,22 @@ import { User, AuthError } from '@supabase/supabase-js';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 
+const DEMO_STORAGE_KEY = 'crwlr_demo';
+
+export const DEMO_USER = {
+  id: 'demo-user',
+  email: 'demo@crwlr.app',
+  app_metadata: {},
+  user_metadata: { full_name: 'Riley Chen', username: 'riley' },
+  aud: 'authenticated',
+  created_at: '2025-04-01T00:00:00.000Z',
+} as User;
+
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  isDemo: boolean;
+  enterDemo: () => void;
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
@@ -15,12 +28,19 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+  const [isDemo, setIsDemo] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check active sessions and sets the user
     const initializeAuth = async () => {
+      if (localStorage.getItem(DEMO_STORAGE_KEY) === '1') {
+        setUser(DEMO_USER);
+        setIsDemo(true);
+        setLoading(false);
+        return;
+      }
+
       try {
         const { data: { session }, error } = await supabase.auth.getSession();
         if (error) throw error;
@@ -92,11 +112,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const enterDemo = () => {
+    localStorage.setItem(DEMO_STORAGE_KEY, '1');
+    setUser(DEMO_USER);
+    setIsDemo(true);
+    navigate('/');
+  };
+
   const signOut = async () => {
     try {
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
-      
+      localStorage.removeItem(DEMO_STORAGE_KEY);
+      setIsDemo(false);
+      if (!isDemo) {
+        const { error } = await supabase.auth.signOut();
+        if (error) throw error;
+      }
       setUser(null);
       navigate('/login');
     } catch (error) {
@@ -107,7 +137,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signUp, signOut }}>
+    <AuthContext.Provider value={{ user, loading, isDemo, enterDemo, signIn, signUp, signOut }}>
       {children}
     </AuthContext.Provider>
   );

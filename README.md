@@ -6,7 +6,11 @@ A little obsession of mine: what if going out felt more like a shared hunt than 
 
 CRWLR is a location / social discovery app I’m building for people who like to wander. Find a spot. Pull friends in. String a few places into a crawl. Leave a trail so the next night is easier than the last.
 
-This is early (on purpose). You can already sign in, add friends, and poke around the feed. A lot of the “what’s near me” magic is still on the stove. I’m putting it out here because I want people to get the vibe, click around, and tell me what would actually make them open it on a Friday. 🌙
+This is early (on purpose). Open the live Harbor District demo:
+
+**https://ajmalsirajudeen.github.io/crwlr/**
+
+No account needed. Tap **Try the Harbor District demo**. You get a fake neighborhood, a feed, friends, and a few crawls to click through. A lot of the “what’s near me” magic is still on the stove. I’m putting it out here because I want people to get the vibe and tell me what would actually make them open it on a Friday. 🌙
 
 ## The bet 🎯
 

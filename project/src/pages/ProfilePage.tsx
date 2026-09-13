@@ -37,7 +37,7 @@ interface FriendRequest {
 }
 
 const ProfilePage = () => {
-  const { user } = useAuth();
+  const { user, isDemo } = useAuth();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -52,10 +52,27 @@ const ProfilePage = () => {
   const [avatarUrl, setAvatarUrl] = useState('');
 
   useEffect(() => {
-    if (user) {
-      Promise.all([fetchProfile(), fetchFriends(), fetchFriendRequests()]).finally(() => setLoading(false));
+    if (!user) return;
+    if (isDemo) {
+      setProfile({
+        username: 'riley',
+        full_name: 'Riley Chen',
+        avatar_url: 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=150',
+        level: 3,
+        points: 120,
+      });
+      setUsername('riley');
+      setFullName('Riley Chen');
+      setFriends([
+        { friend_id: 'user1', username: 'alex', full_name: 'Alex Johnson', avatar_url: null, level: 4, points: 476 },
+        { friend_id: 'user3', username: 'jordan', full_name: 'Jordan Lee', avatar_url: null, level: 5, points: 512 },
+      ]);
+      setFriendRequests([]);
+      setLoading(false);
+      return;
     }
-  }, [user]);
+    Promise.all([fetchProfile(), fetchFriends(), fetchFriendRequests()]).finally(() => setLoading(false));
+  }, [user, isDemo]);
 
   const fetchProfile = async () => {
     try {
@@ -226,24 +243,24 @@ const ProfilePage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-paper">
         <Navbar />
         <div className="flex items-center justify-center min-h-[60vh]">
-          <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-ember" />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-paper">
       <Navbar />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="max-w-3xl mx-auto">
           <div className="bg-white shadow-lg rounded-2xl overflow-hidden mb-6">
             {/* Profile header */}
-            <div className="bg-gradient-to-r from-indigo-600 to-violet-600 px-6 py-8">
+            <div className="bg-ink px-6 py-8">
               <div className="flex items-center">
                 <Avatar
                   src={profile?.avatar_url || undefined}
@@ -253,7 +270,7 @@ const ProfilePage = () => {
                 />
                 <div className="ml-6 text-white">
                   <h1 className="text-2xl font-bold">{profile?.full_name || profile?.username}</h1>
-                  <div className="mt-1 text-indigo-100">
+                  <div className="mt-1 text-amber-100">
                     Level {profile?.level} • {profile?.points} points
                   </div>
                 </div>

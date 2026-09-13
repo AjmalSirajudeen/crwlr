@@ -3,7 +3,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
-import { UserPlus } from 'lucide-react';
 
 const SignupPage = () => {
   const [email, setEmail] = useState('');
@@ -41,16 +40,16 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-ink text-paper flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
-          <UserPlus className="mx-auto h-12 w-12 text-indigo-600" />
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">
+          <h1 className="font-display text-4xl text-paper">CRWLR</h1>
+          <h2 className="mt-6 text-2xl font-semibold text-paper">
             Create your account
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-stone-400">
             Already have an account?{' '}
-            <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+            <Link to="/login" className="text-amber-400 hover:text-amber-300">
               Sign in
             </Link>
           </p>

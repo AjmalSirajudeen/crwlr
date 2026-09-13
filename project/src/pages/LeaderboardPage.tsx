@@ -17,17 +17,17 @@ const LeaderboardPage = () => {
   const userPosition = leaderboardData.find(u => u.isCurrentUser)?.position || 0;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar user={user} onLogin={handleLogin} />
+    <div className="min-h-screen bg-paper">
+      <Navbar />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900">Leaderboard</h1>
+          <h1 className="font-display text-3xl text-ink">Scoreboard</h1>
           <p className="text-gray-600 mt-1">Track your points and ranking</p>
         </div>
 
         {/* User stats card */}
-        <div className="bg-gradient-to-r from-indigo-600 to-violet-600 rounded-xl p-6 text-white mb-8 relative overflow-hidden">
+        <div className="bg-ink rounded-xl p-6 text-white mb-8 relative overflow-hidden">
           <div className="absolute inset-0 bg-pattern opacity-10"></div>
           
           <div className="relative z-10">

@@ -38,6 +38,8 @@ export const mockUsers = [
   }
 ];
 
+export type MockUser = (typeof mockUsers)[number];
+
 export const mockVenues = [
   {
     id: 'venue1',
@@ -46,8 +48,10 @@ export const mockVenues = [
     rating: 4.7,
     priceLevel: 3,
     image: 'https://images.pexels.com/photos/941864/pexels-photo-941864.jpeg?auto=compress&cs=tinysrgb&w=600',
-    address: '123 Main St, Downtown',
+    address: '123 Harbor St, Downtown',
     distance: '0.3 mi',
+    lat: 40.7196,
+    lng: -74.0431,
     tags: ['Cocktails', 'Speakeasy', 'Live Music'],
     friendsVisited: [mockUsers[0], mockUsers[2]]
   },
@@ -60,6 +64,8 @@ export const mockVenues = [
     image: 'https://images.pexels.com/photos/1269025/pexels-photo-1269025.jpeg?auto=compress&cs=tinysrgb&w=600',
     address: '456 Craft Ave, Midtown',
     distance: '0.7 mi',
+    lat: 40.7268,
+    lng: -74.0362,
     tags: ['Craft Beer', 'Gastropub', 'Outdoor Seating'],
     friendsVisited: [mockUsers[1], mockUsers[4]]
   },
@@ -72,6 +78,8 @@ export const mockVenues = [
     image: 'https://images.pexels.com/photos/2775196/pexels-photo-2775196.jpeg?auto=compress&cs=tinysrgb&w=600',
     address: '789 High St, Downtown',
     distance: '0.5 mi',
+    lat: 40.7172,
+    lng: -74.0338,
     tags: ['Rooftop', 'Cocktails', 'Views'],
     friendsVisited: [mockUsers[2], mockUsers[3], mockUsers[0]]
   },
@@ -84,6 +92,8 @@ export const mockVenues = [
     image: 'https://images.pexels.com/photos/2219028/pexels-photo-2219028.jpeg?auto=compress&cs=tinysrgb&w=600',
     address: '321 Game St, West End',
     distance: '1.2 mi',
+    lat: 40.7148,
+    lng: -74.0495,
     tags: ['Sports', 'Beer', 'Wings'],
     friendsVisited: [mockUsers[1], mockUsers[4]]
   },
@@ -96,6 +106,8 @@ export const mockVenues = [
     image: 'https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=600',
     address: '567 Noodle Dr, East Side',
     distance: '0.9 mi',
+    lat: 40.7286,
+    lng: -74.0418,
     tags: ['Italian', 'Wine', 'Pasta'],
     friendsVisited: [mockUsers[3]]
   },
@@ -108,10 +120,14 @@ export const mockVenues = [
     image: 'https://images.pexels.com/photos/801863/pexels-photo-801863.jpeg?auto=compress&cs=tinysrgb&w=600',
     address: '888 Bass Blvd, Downtown',
     distance: '0.4 mi',
+    lat: 40.7214,
+    lng: -74.0386,
     tags: ['Dancing', 'DJ', 'Nightlife'],
     friendsVisited: [mockUsers[2], mockUsers[0]]
   }
 ];
+
+export type MockVenue = (typeof mockVenues)[number];
 
 export const mockCrawls = [
   {
@@ -203,8 +219,56 @@ export const mockLeaderboard = [
   }
 ];
 
+export const mockActivities = [
+  {
+    id: 'act1',
+    type: 'check_in' as const,
+    user: {
+      id: 'user3',
+      username: 'jordan',
+      full_name: 'Jordan Lee',
+      avatar_url: mockUsers[2].avatar,
+    },
+    metadata: { venue_name: 'Skyline', venue_id: 'venue3' },
+    likes_count: 4,
+    comments_count: 1,
+    created_at: new Date(Date.now() - 1000 * 60 * 25).toISOString(),
+    liked_by_user: false,
+  },
+  {
+    id: 'act2',
+    type: 'crawl_created' as const,
+    user: {
+      id: 'user1',
+      username: 'alex',
+      full_name: 'Alex Johnson',
+      avatar_url: mockUsers[0].avatar,
+    },
+    metadata: { crawl_name: 'Downtown Cocktail Tour', crawl_id: 'crawl1' },
+    likes_count: 6,
+    comments_count: 2,
+    created_at: new Date(Date.now() - 1000 * 60 * 80).toISOString(),
+    liked_by_user: true,
+  },
+  {
+    id: 'act3',
+    type: 'crawl_joined' as const,
+    user: {
+      id: 'demo-user',
+      username: 'riley',
+      full_name: 'Riley Chen',
+      avatar_url: mockUsers[0].avatar,
+    },
+    metadata: { crawl_name: 'Date Night Places', crawl_id: 'crawl4' },
+    likes_count: 2,
+    comments_count: 0,
+    created_at: new Date(Date.now() - 1000 * 60 * 140).toISOString(),
+    liked_by_user: false,
+  },
+];
+
 export const mockCurrentCrawl = {
-  id: 'crawl4',
+  id: 'crawl-warrior',
   name: 'Weekend Warrior Tour',
   date: 'Today',
   time: 'Now',

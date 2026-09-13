@@ -7,23 +7,23 @@ type BadgeProps = {
   className?: string;
 } & React.HTMLAttributes<HTMLSpanElement>;
 
-const Badge = ({ 
-  variant = 'default', 
-  children, 
+const Badge = ({
+  variant = 'default',
+  children,
   className,
-  ...props 
+  ...props
 }: BadgeProps) => {
   const variantClasses = {
-    default: 'bg-gray-100 text-gray-800',
-    primary: 'bg-indigo-100 text-indigo-800',
-    secondary: 'bg-teal-100 text-teal-800',
-    success: 'bg-green-100 text-green-800',
-    warning: 'bg-amber-100 text-amber-800',
+    default: 'bg-stone-200 text-stone-800',
+    primary: 'bg-ember-light text-ember-dark',
+    secondary: 'bg-stone-800 text-amber-100',
+    success: 'bg-emerald-100 text-emerald-800',
+    warning: 'bg-amber-100 text-amber-900',
     error: 'bg-rose-100 text-rose-800'
   };
 
   return (
-    <span 
+    <span
       className={cn(
         'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium',
         variantClasses[variant],

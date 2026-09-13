@@ -171,8 +171,8 @@ const FilterBar = ({ onFilterChange }: FilterBarProps) => {
                     key={area}
                     className={`block w-full text-left px-3 py-1.5 rounded text-sm ${
                       selectedArea === area
-                        ? 'bg-indigo-100 text-indigo-700'
-                        : 'text-gray-600 hover:bg-gray-50'
+                        ? 'bg-ember-light text-ember-dark'
+                        : 'text-gray-600 hover:bg-paper'
                     }`}
                     onClick={() => selectArea(area)}
                   >
@@ -191,7 +191,7 @@ const FilterBar = ({ onFilterChange }: FilterBarProps) => {
                     key={type}
                     className={`px-3 py-1 rounded-full text-xs ${
                       selectedTypes.includes(type)
-                        ? 'bg-teal-100 text-teal-700'
+                        ? 'bg-ember-light text-ember-dark'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                     onClick={() => toggleType(type)}

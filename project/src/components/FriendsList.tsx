@@ -23,7 +23,7 @@ const FriendsList = ({ friends, onRemoveFriend, onMessage }: FriendsListProps) =
   return (
     <div className="space-y-4">
       {friends.length === 0 ? (
-        <div className="text-center py-8 bg-gray-50 rounded-lg">
+        <div className="text-center py-8 bg-paper rounded-lg">
           <p className="text-gray-500">No friends yet</p>
         </div>
       ) : (

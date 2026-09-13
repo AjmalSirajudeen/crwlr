@@ -2,45 +2,61 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navigation/Navbar';
 import FilterBar from '../components/FilterBar';
 import VenueCard from '../components/VenueCard';
-import { mockVenues, mockUsers } from '../data/mockData';
-import Button from '../components/ui/Button';
+import { mockVenues } from '../data/mockData';
+import VenueMap from '../components/VenueMap';
 import { Search, Map, ListFilter } from 'lucide-react';
 
 const DiscoverPage = () => {
-  const [user] = useState(mockUsers[0]);
   const [venues] = useState(mockVenues);
   const [viewMode, setViewMode] = useState<'grid' | 'map'>('grid');
   const [searchQuery, setSearchQuery] = useState('');
-  
-  const handleFilterChange = (filters: any) => {
-    console.log('Filters applied:', filters);
-    // Would filter venues based on the selected filters
-  };
+  const [filters, setFilters] = useState<{
+    area?: string;
+    type?: string[];
+    price?: number[];
+    tags?: string[];
+  }>({});
 
-  const handleLogin = () => {
-    console.log('Login clicked');
+  const handleFilterChange = (next: typeof filters) => {
+    setFilters(next);
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
 
+  const visibleVenues = venues.filter((venue) => {
+    const q = searchQuery.trim().toLowerCase();
+    const hay = `${venue.name} ${venue.type} ${venue.address} ${venue.tags.join(' ')}`.toLowerCase();
+    if (q && !hay.includes(q)) return false;
+    if (filters.area && !venue.address.toLowerCase().includes(filters.area.toLowerCase())) return false;
+    if (filters.type?.length && !filters.type.some((t) => venue.type.toLowerCase().includes(t.toLowerCase()))) {
+      return false;
+    }
+    if (filters.price?.length && !filters.price.includes(venue.priceLevel)) return false;
+    if (filters.tags?.length && !filters.tags.some((tag) => venue.tags.includes(tag))) return false;
+    return true;
+  });
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar user={user} onLogin={handleLogin} />
+    <div className="min-h-screen bg-paper">
+      <Navbar />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="mb-4 rounded-lg border border-ember-light bg-ember-light/60 px-4 py-3 text-sm text-ember-dark">
+          Synthetic sample: six made-up spots pinned on a real map (Harbor District stand-in). Search and filters work on this list.
+        </div>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Discover Places</h1>
-            <p className="text-gray-600 mt-1">Find the best spots around you</p>
+            <h1 className="font-display text-3xl text-ink">Out tonight</h1>
+            <p className="text-stone-500 mt-1">Harbor District sample spots</p>
           </div>
 
           <div className="flex mt-4 md:mt-0 space-x-2">
             <button 
               className={`p-2 rounded-md border ${
                 viewMode === 'grid' 
-                  ? 'bg-indigo-50 border-indigo-200 text-indigo-700' 
+                  ? 'bg-ember-light/60 border-ember-light text-ember-dark' 
                   : 'bg-white border-gray-200 text-gray-600'
               }`}
               onClick={() => setViewMode('grid')}
@@ -50,7 +66,7 @@ const DiscoverPage = () => {
             <button 
               className={`p-2 rounded-md border ${
                 viewMode === 'map' 
-                  ? 'bg-indigo-50 border-indigo-200 text-indigo-700' 
+                  ? 'bg-ember-light/60 border-ember-light text-ember-dark' 
                   : 'bg-white border-gray-200 text-gray-600'
               }`}
               onClick={() => setViewMode('map')}
@@ -68,7 +84,7 @@ const DiscoverPage = () => {
             <input
               type="text"
               placeholder="Search for venues, cuisine, or vibes..."
-              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-ember focus:border-ember"
               value={searchQuery}
               onChange={handleSearchChange}
             />
@@ -79,25 +95,27 @@ const DiscoverPage = () => {
 
         {viewMode === 'grid' ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {venues.map((venue) => (
+            {visibleVenues.map((venue) => (
               <VenueCard 
                 key={venue.id} 
                 venue={venue} 
                 onClick={() => console.log('Venue clicked:', venue.id)} 
               />
             ))}
+            {visibleVenues.length === 0 && (
+              <p className="col-span-full text-center text-gray-500 py-8">
+                Nothing in the sample matches that search.
+              </p>
+            )}
           </div>
         ) : (
-          <div className="h-[500px] bg-gray-200 rounded-lg flex items-center justify-center">
-            <div className="text-center p-4">
-              <Map size={48} className="mx-auto text-gray-400 mb-2" />
-              <p className="text-gray-600">Map view would be displayed here with venue pins</p>
-              <p className="text-gray-500 text-sm mt-1">Integrates with Google Maps or Mapbox</p>
-              <Button variant="primary" className="mt-3">
-                Enable Location
-              </Button>
-            </div>
-          </div>
+          visibleVenues.length === 0 ? (
+            <p className="text-center text-gray-500 py-8">
+              Nothing in the sample matches that search.
+            </p>
+          ) : (
+            <VenueMap venues={visibleVenues} />
+          )
         )}
 
       </main>

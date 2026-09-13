@@ -62,7 +62,7 @@ const ActivityFeed: React.FC<ActivityFeedProps> = ({
             <p className="mb-2">
               <span className="font-medium">{user.full_name || user.username}</span>
               {' checked in at '}
-              <span className="font-medium text-indigo-600">{metadata.venue_name}</span>
+              <span className="font-medium text-ember">{metadata.venue_name}</span>
             </p>
             {metadata.photo_url && (
               <img
@@ -80,7 +80,7 @@ const ActivityFeed: React.FC<ActivityFeedProps> = ({
             <p>
               <span className="font-medium">{user.full_name || user.username}</span>
               {' created a new crawl: '}
-              <span className="font-medium text-indigo-600">{metadata.crawl_name}</span>
+              <span className="font-medium text-ember">{metadata.crawl_name}</span>
             </p>
           </div>
         );
@@ -91,7 +91,7 @@ const ActivityFeed: React.FC<ActivityFeedProps> = ({
             <p>
               <span className="font-medium">{user.full_name || user.username}</span>
               {' joined the crawl '}
-              <span className="font-medium text-indigo-600">{metadata.crawl_name}</span>
+              <span className="font-medium text-ember">{metadata.crawl_name}</span>
             </p>
           </div>
         );
@@ -102,7 +102,7 @@ const ActivityFeed: React.FC<ActivityFeedProps> = ({
             <p>
               <span className="font-medium">{user.full_name || user.username}</span>
               {' became friends with '}
-              <span className="font-medium text-indigo-600">{metadata.friend_name}</span>
+              <span className="font-medium text-ember">{metadata.friend_name}</span>
             </p>
           </div>
         );
@@ -113,7 +113,7 @@ const ActivityFeed: React.FC<ActivityFeedProps> = ({
             <p>
               <span className="font-medium">{user.full_name || user.username}</span>
               {' rated '}
-              <span className="font-medium text-indigo-600">{metadata.venue_name}</span>
+              <span className="font-medium text-ember">{metadata.venue_name}</span>
               {' '}
               <span className="text-yellow-500">{'★'.repeat(metadata.rating || 0)}</span>
             </p>
@@ -126,7 +126,7 @@ const ActivityFeed: React.FC<ActivityFeedProps> = ({
             <p className="mb-2">
               <span className="font-medium">{user.full_name || user.username}</span>
               {' posted a photo at '}
-              <span className="font-medium text-indigo-600">{metadata.venue_name}</span>
+              <span className="font-medium text-ember">{metadata.venue_name}</span>
             </p>
             <img
               src={metadata.photo_url}
@@ -142,7 +142,7 @@ const ActivityFeed: React.FC<ActivityFeedProps> = ({
             <p>
               <span className="font-medium">{user.full_name || user.username}</span>
               {' earned the achievement '}
-              <span className="font-medium text-indigo-600">{metadata.achievement_name}</span>
+              <span className="font-medium text-ember">{metadata.achievement_name}</span>
             </p>
           </div>
         );
@@ -158,7 +158,7 @@ const ActivityFeed: React.FC<ActivityFeedProps> = ({
         return <MapPin className="text-green-500" />;
       case 'crawl_created':
       case 'crawl_joined':
-        return <Users className="text-indigo-500" />;
+        return <Users className="text-ember" />;
       case 'friend_added':
         return <Users className="text-blue-500" />;
       case 'venue_rated':

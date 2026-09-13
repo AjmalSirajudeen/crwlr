@@ -32,7 +32,7 @@ const LeaderboardCard = ({ title, users, className }: LeaderboardCardProps) => {
               key={user.id}
               className={`
                 flex items-center justify-between p-3
-                ${user.isCurrentUser ? 'bg-indigo-50' : ''}
+                ${user.isCurrentUser ? 'bg-ember-light/60' : ''}
               `}
             >
               <div className="flex items-center">
@@ -60,13 +60,13 @@ const LeaderboardCard = ({ title, users, className }: LeaderboardCardProps) => {
                 />
                 <span className={`
                   ml-2 font-medium
-                  ${user.isCurrentUser ? 'text-indigo-700' : 'text-gray-700'}
+                  ${user.isCurrentUser ? 'text-ember-dark' : 'text-gray-700'}
                 `}>
                   {user.name} {user.isCurrentUser && '(You)'}
                 </span>
               </div>
               <div className="flex items-center">
-                <Award className="text-indigo-500 mr-1" size={16} />
+                <Award className="text-ember mr-1" size={16} />
                 <span className="font-bold">
                   {user.points.toLocaleString()}
                 </span>

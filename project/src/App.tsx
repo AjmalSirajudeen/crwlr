@@ -7,13 +7,14 @@ import HomePage from './pages/HomePage';
 import DiscoverPage from './pages/DiscoverPage';
 import CrawlsPage from './pages/CrawlsPage';
 import CrawlDetailPage from './pages/CrawlDetailPage';
+import CreateCrawlPage from './pages/CreateCrawlPage';
 import LeaderboardPage from './pages/LeaderboardPage';
 import ProfilePage from './pages/ProfilePage';
 import FriendsPage from './pages/FriendsPage';
 
 function App() {
   return (
-    <div className="pb-20"> {/* Add padding to account for bottom navigation */}
+    <div className="min-h-screen bg-paper pb-20 text-ink">
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
@@ -30,6 +31,11 @@ function App() {
         <Route path="/crawls" element={
           <ProtectedRoute>
             <CrawlsPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/crawls/new" element={
+          <ProtectedRoute>
+            <CreateCrawlPage />
           </ProtectedRoute>
         } />
         <Route path="/crawls/:id" element={

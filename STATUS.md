@@ -2,6 +2,14 @@
 
 CRWLR is a prototype. This list is what is actually in the repo today.
 
+## Phase 1 (done)
+
+- [x] Guest demo: "Try the Harbor District demo" on login (no signup needed)
+- [x] Synthetic neighborhood: 6 venues, sample crawls, sample feed
+- [x] Discover search + filters actually change the list
+- [x] Demo home / profile / friends use sample data instead of empty Supabase calls
+- [x] Crawl cards open the crawl detail screen
+
 ## Working enough to demo
 
 - [x] App shell (Vite + React + TypeScript + Tailwind)
@@ -14,19 +22,16 @@ CRWLR is a prototype. This list is what is actually in the repo today.
 
 ## Still mock or unfinished
 
-- [ ] Discover: venues and filters are mock data (`src/data/mockData.ts`)
-- [ ] Map view is a placeholder
+- [x] Create crawl (demo): 3-step wizard, walking route, save in this browser
+- [ ] Check-ins do not persist yet
+- [x] Discover map (Leaflet + OpenStreetMap, sample pins)
 - [ ] Live location / nearby venues
-- [ ] Real check-ins against a venue API
-- [ ] Crawl planning that persists for a group
 - [ ] Points, achievements, and a real leaderboard
 - [ ] Comments and notifications
 - [ ] Tests
-- [ ] Production deploy
+- [x] Public demo: https://ajmalsirajudeen.github.io/crwlr/
 
-## Next (when I pick this back up)
+## Next phases
 
-1. Replace mock venues with a real place source
-2. Persist crawls and check-ins in Supabase
-3. Make discover search and filters actually change results
-4. Add a short test pass on auth and friends
+2. Persist crawls and check-ins (at least in the demo session)
+3. Host a public demo URL and put it on the README

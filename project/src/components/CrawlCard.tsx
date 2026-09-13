@@ -43,8 +43,8 @@ const CrawlCard = ({ crawl, onView, onJoin }: CrawlCardProps) => {
   };
 
   return (
-    <Card className="max-w-md w-full overflow-hidden">
-      <div className="relative bg-gradient-to-r from-indigo-500 to-purple-600 h-24 flex items-end">
+    <Card className="w-full overflow-hidden">
+      <div className="relative bg-ink h-24 flex items-end">
         <div className="absolute inset-0 bg-pattern opacity-10"></div>
         <div className="p-4 text-white">
           <Badge 
@@ -110,10 +110,10 @@ const CrawlCard = ({ crawl, onView, onJoin }: CrawlCardProps) => {
         </div>
       </CardContent>
 
-      <CardFooter className="bg-gray-50 flex justify-between items-center">
+      <CardFooter className="bg-paper flex justify-between items-center">
         <Button 
           variant="ghost" 
-          className="text-indigo-600" 
+          className="text-ember" 
           onClick={() => onView(crawl.id)}
         >
           View Details

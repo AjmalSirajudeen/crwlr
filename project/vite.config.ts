@@ -8,12 +8,15 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
   return {
+    base: env.VITE_BASE || '/',
     plugins: [react()],
     optimizeDeps: {
       exclude: ['lucide-react'],
     },
     define: {
-      'process.env': env
+      'process.env': Object.fromEntries(
+        Object.entries(env).filter(([key]) => key.startsWith('VITE_'))
+      ),
     },
     server: {
       host: true,

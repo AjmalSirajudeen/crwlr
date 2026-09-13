@@ -6,19 +6,25 @@ import ActivityFeed from '../components/ActivityFeed';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { Users, MapPin, Trophy } from 'lucide-react';
+import { mockActivities } from '../data/mockData';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
-  const { user } = useAuth();
+  const { user, isDemo } = useAuth();
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (user) {
-      fetchActivities();
-      subscribeToActivities();
+    if (!user) return;
+    if (isDemo) {
+      setActivities(mockActivities as any);
+      setLoading(false);
+      return;
     }
-  }, [user]);
+    fetchActivities();
+    subscribeToActivities();
+  }, [user, isDemo]);
 
   const fetchActivities = async () => {
     try {
@@ -66,6 +72,20 @@ const HomePage = () => {
   };
 
   const handleLike = async (activityId: string) => {
+    if (isDemo) {
+      setActivities((prev: any[]) =>
+        prev.map((a) =>
+          a.id === activityId
+            ? {
+                ...a,
+                liked_by_user: !a.liked_by_user,
+                likes_count: a.liked_by_user ? a.likes_count - 1 : a.likes_count + 1,
+              }
+            : a
+        )
+      );
+      return;
+    }
     try {
       const { data: existingLike } = await supabase
         .from('activity_likes')
@@ -101,46 +121,42 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-paper">
       <Navbar />
       
       <main className="max-w-2xl mx-auto px-4 py-6">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">Home</h1>
+          <h1 className="font-display text-3xl text-ink">Tonight</h1>
         </div>
+        {isDemo && (
+          <div className="mb-4 rounded-xl border border-ember-light bg-ember-light/50 px-4 py-3 text-sm text-ember-dark">
+            Harbor District demo. Synthetic spots and friends. Nothing here is a real check-in.
+          </div>
+        )}
 
         <div className="grid grid-cols-1 gap-6">
           {/* Quick Actions */}
-          <Card className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-4">
+          <Card className="bg-ink border-ink text-paper p-4">
             <div className="grid grid-cols-3 gap-4">
-              <Button
-                variant="ghost"
-                className="flex flex-col items-center justify-center p-4 rounded-lg bg-white/10 hover:bg-white/20 text-white"
-              >
+              <Link to="/discover" className="flex flex-col items-center justify-center p-4 rounded-lg bg-white/10 hover:bg-white/20 text-white">
                 <MapPin className="h-6 w-6 mb-2" />
                 <span className="text-sm">Check In</span>
-              </Button>
-              <Button
-                variant="ghost"
-                className="flex flex-col items-center justify-center p-4 rounded-lg bg-white/10 hover:bg-white/20 text-white"
-              >
+              </Link>
+              <Link to="/crawls/new" className="flex flex-col items-center justify-center p-4 rounded-lg bg-white/10 hover:bg-white/20 text-white">
                 <Users className="h-6 w-6 mb-2" />
                 <span className="text-sm">New Crawl</span>
-              </Button>
-              <Button
-                variant="ghost"
-                className="flex flex-col items-center justify-center p-4 rounded-lg bg-white/10 hover:bg-white/20 text-white"
-              >
+              </Link>
+              <Link to="/leaderboard" className="flex flex-col items-center justify-center p-4 rounded-lg bg-white/10 hover:bg-white/20 text-white">
                 <Trophy className="h-6 w-6 mb-2" />
                 <span className="text-sm">Rewards</span>
-              </Button>
+              </Link>
             </div>
           </Card>
 
           {/* Activity Feed */}
           {loading ? (
             <div className="text-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-ink mx-auto"></div>
             </div>
           ) : error ? (
             <Card className="p-4 text-center text-red-600">

@@ -98,7 +98,7 @@ const VenueCard = ({ venue, compact = false, className, onClick }: VenueCardProp
 
       {venue.friendsVisited && venue.friendsVisited.length > 0 && (
         <CardFooter className={cn(
-          'flex items-center bg-indigo-50/60',
+          'flex items-center bg-ember-light/60/60',
           compact ? 'p-2' : 'py-2 px-4'
         )}>
           <div className="flex -space-x-2 mr-2">
@@ -112,12 +112,12 @@ const VenueCard = ({ venue, compact = false, className, onClick }: VenueCardProp
               />
             ))}
           </div>
-          <span className="text-xs text-indigo-700">
+          <span className="text-xs text-ember-dark">
             {venue.friendsVisited.length === 1
               ? '1 friend visited'
               : `${venue.friendsVisited.length} friends visited`}
           </span>
-          <ChevronRight className="text-indigo-400 ml-auto" size={16} />
+          <ChevronRight className="text-amber-600 ml-auto" size={16} />
         </CardFooter>
       )}
     </Card>

@@ -36,7 +36,7 @@ const Avatar = ({
   return (
     <div className={cn("relative inline-block", className)} {...props}>
       <div className={cn(
-        "rounded-full overflow-hidden bg-gradient-to-r from-indigo-100 to-purple-100 flex items-center justify-center",
+        "rounded-full overflow-hidden bg-ember-light flex items-center justify-center",
         sizeClasses[size]
       )}>
         {src ? (
@@ -46,7 +46,7 @@ const Avatar = ({
             className="w-full h-full object-cover"
           />
         ) : (
-          <span className="text-indigo-500 font-medium">
+          <span className="text-ember-dark font-medium">
             {alt.substring(0, 2).toUpperCase()}
           </span>
         )}

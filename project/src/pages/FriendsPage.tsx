@@ -28,7 +28,7 @@ interface FriendRequest {
 }
 
 const FriendsPage = () => {
-  const { user } = useAuth();
+  const { user, isDemo } = useAuth();
   const [friends, setFriends] = useState<Friend[]>([]);
   const [requests, setRequests] = useState<FriendRequest[]>([]);
   const [activeTab, setActiveTab] = useState<'friends' | 'requests' | 'add'>('friends');
@@ -36,11 +36,20 @@ const FriendsPage = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (user) {
-      fetchFriends();
-      fetchFriendRequests();
+    if (!user) return;
+    if (isDemo) {
+      setFriends([
+        { friend_id: 'user1', username: 'alex', full_name: 'Alex Johnson', avatar_url: null, level: 4, points: 476 },
+        { friend_id: 'user3', username: 'jordan', full_name: 'Jordan Lee', avatar_url: null, level: 5, points: 512 },
+        { friend_id: 'user5', username: 'morgan', full_name: 'Morgan Wilson', avatar_url: null, level: 6, points: 644 },
+      ]);
+      setRequests([]);
+      setLoading(false);
+      return;
     }
-  }, [user]);
+    fetchFriends();
+    fetchFriendRequests();
+  }, [user, isDemo]);
 
   const fetchFriends = async () => {
     try {
@@ -160,7 +169,7 @@ const FriendsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-paper">
       <Navbar />
       
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -175,7 +184,7 @@ const FriendsPage = () => {
                 className={`
                   py-4 px-6 border-b-2 font-medium text-sm
                   ${activeTab === 'friends'
-                    ? 'border-indigo-500 text-indigo-600'
+                    ? 'border-ember text-ember'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}
                 `}
                 onClick={() => setActiveTab('friends')}
@@ -187,7 +196,7 @@ const FriendsPage = () => {
                 className={`
                   py-4 px-6 border-b-2 font-medium text-sm
                   ${activeTab === 'requests'
-                    ? 'border-indigo-500 text-indigo-600'
+                    ? 'border-ember text-ember'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}
                 `}
                 onClick={() => setActiveTab('requests')}
@@ -199,7 +208,7 @@ const FriendsPage = () => {
                 className={`
                   py-4 px-6 border-b-2 font-medium text-sm
                   ${activeTab === 'add'
-                    ? 'border-indigo-500 text-indigo-600'
+                    ? 'border-ember text-ember'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}
                 `}
                 onClick={() => setActiveTab('add')}
@@ -219,7 +228,7 @@ const FriendsPage = () => {
 
             {loading ? (
               <div className="text-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-ink mx-auto"></div>
               </div>
             ) : (
               <>

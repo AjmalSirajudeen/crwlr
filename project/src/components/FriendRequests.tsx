@@ -24,7 +24,7 @@ const FriendRequests = ({ requests, onAccept, onReject }: FriendRequestsProps) =
   return (
     <div className="space-y-4">
       {requests.length === 0 ? (
-        <div className="text-center py-8 bg-gray-50 rounded-lg">
+        <div className="text-center py-8 bg-paper rounded-lg">
           <p className="text-gray-500">No pending friend requests</p>
         </div>
       ) : (

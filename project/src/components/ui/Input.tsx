@@ -13,10 +13,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           className={cn(
             "w-full px-4 py-2 rounded-lg border transition-colors duration-200",
-            "focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent",
-            error 
-              ? "border-rose-500 bg-rose-50" 
-              : "border-gray-300 hover:border-gray-400",
+            "focus:outline-none focus:ring-2 focus:ring-ember/40 focus:border-ember",
+            error
+              ? "border-rose-500 bg-rose-50"
+              : "border-stone-300 bg-white hover:border-stone-400",
             className
           )}
           ref={ref}

@@ -7,10 +7,14 @@ import './index.css';
 import './styles/patterns.css';
 
 const root = createRoot(document.getElementById('root')!);
+const basename =
+  import.meta.env.BASE_URL === '/'
+    ? undefined
+    : import.meta.env.BASE_URL.replace(/\/$/, '');
 
 root.render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <AuthProvider>
         <App />
       </AuthProvider>

@@ -12,8 +12,9 @@ const Card = ({ children, className, hoverEffect = false, onClick, ...props }: C
   return (
     <div
       className={cn(
-        "bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300",
-        hoverEffect && "hover:shadow-lg hover:-translate-y-1 cursor-pointer",
+        "rounded-2xl border overflow-hidden transition-all duration-200",
+        !(className || '').includes('bg-') && "bg-paper-card border-stone-200",
+        hoverEffect && "hover:border-stone-300 hover:shadow-sm cursor-pointer",
         className
       )}
       onClick={onClick}
@@ -26,7 +27,7 @@ const Card = ({ children, className, hoverEffect = false, onClick, ...props }: C
 
 export const CardHeader = ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   return (
-    <div className={cn("p-4 border-b border-gray-100", className)} {...props}>
+    <div className={cn("p-4 border-b border-stone-200", className)} {...props}>
       {children}
     </div>
   );
@@ -42,7 +43,7 @@ export const CardContent = ({ children, className, ...props }: React.HTMLAttribu
 
 export const CardFooter = ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   return (
-    <div className={cn("p-4 border-t border-gray-100 bg-gray-50/50", className)} {...props}>
+    <div className={cn("p-4 border-t border-stone-200 bg-paper", className)} {...props}>
       {children}
     </div>
   );

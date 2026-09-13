@@ -34,7 +34,7 @@ const CheckInCard = ({
   return (
     <div className={`
       border rounded-xl overflow-hidden transition-all duration-300
-      ${isCurrentStop ? 'border-indigo-500 shadow-md' : 'border-gray-200'}
+      ${isCurrentStop ? 'border-ember shadow-md' : 'border-gray-200'}
     `}>
       <div className="relative h-32">
         <img
@@ -68,8 +68,8 @@ const CheckInCard = ({
       </div>
 
       {isCurrentStop && !hasCheckedIn && (
-        <div className="p-3 bg-indigo-50 flex justify-between items-center">
-          <div className="flex items-center text-indigo-700">
+        <div className="p-3 bg-ember-light/60 flex justify-between items-center">
+          <div className="flex items-center text-ember-dark">
             <Award size={16} className="mr-1" />
             <span className="text-sm font-medium">+5 points for check-in</span>
           </div>

@@ -73,7 +73,7 @@ const UserSearch = ({ onSearch, onSendRequest, existingFriends, pendingRequests 
       <div className="space-y-2">
         {loading ? (
           <div className="text-center py-4">
-            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-indigo-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-ink mx-auto"></div>
           </div>
         ) : (
           results.map((user) => (
