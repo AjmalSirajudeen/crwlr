@@ -1,63 +1,42 @@
-# CRWLR 🗺️🍻
+# CRWLR
 
-*The night out, but it feels like a quest.*
+I got tired of the group chat where nobody wants to pick the next bar. This is my attempt at an app for that: find a place, pull friends in, string a few stops into a crawl.
 
-A little obsession of mine: what if going out felt more like a shared hunt than a group chat full of “idk where do you want to go?”
+It's a prototype. A lot of it is still fake data. That's fine for now. I wanted something you could click through.
 
-CRWLR is a location / social discovery app I’m building for people who like to wander. Find a spot. Pull friends in. String a few places into a crawl. Leave a trail so the next night is easier than the last.
+**Live demo:** https://ajmalsirajudeen.github.io/crwlr/
 
-This is early (on purpose). Open the live Harbor District demo:
+Open it and tap **Try the Harbor District demo**. No account. You get a made-up neighborhood, six venues, some friends, and crawls you can build and save in your browser.
 
-**https://ajmalsirajudeen.github.io/crwlr/**
+What you can actually do today:
+- walk through the demo without signing up
+- search and filter the sample spots (there's a map)
+- create a crawl, see a walking route, save it
+- sign up for real if you want (Supabase auth, friends, profile)
 
-No account needed. Tap **Try the Harbor District demo**. You get a fake neighborhood, a feed, friends, and a few crawls to click through. A lot of the “what’s near me” magic is still on the stove. I’m putting it out here because I want people to get the vibe and tell me what would actually make them open it on a Friday. 🌙
+What's not there yet:
+- real nearby venues / GPS
+- check-ins that persist
+- a leaderboard that isn't just filler
 
-## The bet 🎯
+I keep a messy checklist in [STATUS.md](STATUS.md).
 
-Most nightlife apps are either maps or reviews. I care about the in-between:
+## Stack
 
-- 🚶 the route you invent with people you like
-- 📍 the check-in that is really a “you had to be there”
-- 🏆 the quiet scoreboard that makes exploring a city feel like a game you are writing yourselves
+React, TypeScript, Vite, Tailwind, React Router, Supabase.
 
-By day I’m an operator and a builder. CRWLR is the side of me that wants to ship something people actually pass around.
+## Run it locally
 
-## What’s already fun to click ✨
-
-- 🔐 sign up / log in
-- 🏠 a home feed you can like
-- 👋 friends: search, request, accept
-- 👤 profile
-- 🍻 crawl + leaderboard screens (the look is there; the live city underneath is still coming)
-
-## Still cooking 🍳
-
-- 📌 real nearby venues (Discover is on mock data for now… I know, I know)
-- 🗺️ a map that does more than sit there looking pretty
-- ✅ check-ins tied to real places
-- 🎖️ points, badges, a leaderboard that means something
-- ✨ the kind of polish you only get after strangers use it
-
-If you like watching the sausage get made, the checklist is in [STATUS.md](STATUS.md).
-
-## Stack 🛠️
-
-React · TypeScript · Vite · Tailwind · React Router · Supabase
-
-Fast enough to prototype. Serious enough to grow.
-
-## Run it 🚀
-
-Node plus your own Supabase project.
+You'll need Node and your own Supabase project.
 
 ```bash
 cd project
 cp .env.example .env
-# drop in VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY
+# add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY
 npm install
 npm run dev
 ```
 
-Migrations are in `project/supabase/migrations/`. Keep `.env` off git. Your secrets, your night.
+Migrations live in `project/supabase/migrations/`. Don't commit `.env`.
 
-If you try it and it sparks something (a venue you’d want in here, a crawl that got messy, a feature you’d actually use), I want to hear it. That’s the whole point of putting an unfinished product on the internet. 🧃
+If you try the demo and something feels dumb or useful, I want to know. That's why it's up.
